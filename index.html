@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry, Ardi</title>
+    <style>
+        body {
+            background-color: #ffc0cb;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #d63384;
+        }
+        .animated-text {
+            position: absolute;
+            top: 20px;
+            font-size: 1.5rem;
+            color: #ff1493;
+            background: transparent;
+            animation: fadeInOut 5s infinite alternate;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .sorry-note {
+            position: absolute;
+            font-size: 1.2rem;
+            color: #ff1493;
+            opacity: 0.8;
+            white-space: nowrap;
+            animation: floatAround 6s linear infinite alternate;
+        }
+        @keyframes floatAround {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(30px, -20px); }
+            50% { transform: translate(-30px, -40px); }
+            75% { transform: translate(20px, -60px); }
+            100% { transform: translate(0, -80px); }
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 2rem;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-100px); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        #press-heart {
+            position: absolute;
+            bottom: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #ff1493;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <video id="background-video" autoplay loop muted>
+        <source src="newsong.mp4" type="video/mp4">
+    </video>
+    
+    <div class="animated-text">Hey, Shundori. I am sorry. I am kinda missing your eyes, smile, and laugh too. Can we be best friends cutie?</div>
+    <h1>Ardi, I am really sorry from the bottom of my heart</h1>
+
+    <button id="press-heart">Press &lt;3</button>
+
+    <script>
+        document.getElementById("press-heart").addEventListener("click", function() {
+            let video = document.getElementById("background-video");
+            if (!video.paused) {
+                video.pause();
+            } else {
+                video.play();
+            }
+        });
+
+        function createSorryNotes() {
+            const messages = ["I'm Sorry", "Hey Cutie forgive me", "Oiiiiii", "I miss you", "Kamon acho?", "Kamon galo din?", "Heartfelt Apology"];
+            for (let i = 0; i < 10; i++) {
+                let note = document.createElement("div");
+                note.classList.add("sorry-note");
+                note.innerText = messages[Math.floor(Math.random() * messages.length)];
+                document.body.appendChild(note);
+                
+                note.style.left = Math.random() * (window.innerWidth - 100) + "px";
+                note.style.top = Math.random() * (window.innerHeight - 100) + "px";
+            }
+        }
+        createSorryNotes();
+    </script>
+</body>
+</html>
+
+
+
+
