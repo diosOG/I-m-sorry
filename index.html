@@ -1,129 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I'm Sorry Cutie❤️</title>
-    <style>
-        body {
-            background-color: #ffc0cb;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        h1 {
-            font-size: 3rem;
-            color: #d63384;
-        }
-        .animated-text {
-            position: absolute;
-            top: 20px;
-            font-size: 1.5rem;
-            color: #ff1493;
-            background: transparent;
-            animation: fadeInOut 5s infinite alternate;
-        }
-        @keyframes fadeInOut {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-        .sorry-note {
-            position: absolute;
-            font-size: 1.2rem;
-            color: #ff1493;
-            opacity: 0.8;
-            white-space: nowrap;
-            animation: floatAround 6s linear infinite alternate;
-        }
-        @keyframes floatAround {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(30px, -20px); }
-            50% { transform: translate(-30px, -40px); }
-            75% { transform: translate(20px, -60px); }
-            100% { transform: translate(0, -80px); }
-        }
-        .heart {
-            position: absolute;
-            color: red;
-            font-size: 2rem;
-            animation: fall 5s linear infinite;
-        }
-        @keyframes fall {
-            from { transform: translateY(-100px); opacity: 1; }
-            to { transform: translateY(100vh); opacity: 0; }
-        }
-        #background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        #press-heart {
-            position: absolute;
-            bottom: 20px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            background-color: #ff1493;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 10px;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday My Sunshine ❤️</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#b30059;
+      --deep:#800020;
+      --bg1:#ffe8ec;   /* warm pastel */
+      --bg2:#fff5f7;
+      --text:#222;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:'Playfair Display',serif;
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      color:var(--text);
+      overflow-x:hidden;
+      transition:background 0.8s,color 0.8s;
+    }
+
+    header{
+      padding:1.75rem;
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(6px);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+    header .title {text-align:left;}
+    header h1{
+      margin:0;
+      font-family:'Dancing Script',cursive;
+      color:var(--accent);
+      font-size:1.9rem;
+      transition:color .6s;
+    }
+    header p{
+      margin:0;
+      color:var(--text);
+      font-size:0.95rem;
+      transition:color .6s;
+    }
+
+    .sound-btn{
+      background:transparent;
+      border:2px solid rgba(0,0,0,0.2);
+      padding:.4rem .8rem;
+      border-radius:20px;
+      cursor:pointer;
+      font-size:1rem;
+      transition:background 0.3s;
+    }
+
+    /* Intro screen */
+    #intro {
+      position:fixed;inset:0;
+      display:flex;align-items:center;justify-content:center;flex-direction:column;
+      z-index:9999;
+      background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+      transition:opacity .6s ease,visibility .6s ease;
+    }
+    #intro.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+    #intro h1{
+      font-family:'Dancing Script',cursive;
+      color:#fff;font-size:2.6rem;margin:0;
+      text-shadow:0 6px 30px rgba(0,0,0,0.2);
+      animation:pulse 1.6s infinite;
+    }
+    #intro p{color:#fff;opacity:.95;margin-top:.6rem;font-size:1.05rem;}
+    .open-btn{
+      margin-top:1.25rem;background:rgba(255,255,255,0.95);
+      border:none;color:var(--deep);
+      padding:.75rem 1.25rem;border-radius:12px;font-weight:700;
+      cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,0.12);
+    }
+    .open-btn:hover{transform:translateY(-3px);}
+    @keyframes pulse {0%{transform:scale(1)}50%{transform:scale(1.07)}100%{transform:scale(1)}}
+
+    /* Floating hearts */
+    .heart{position:fixed;bottom:-40px;width:22px;height:22px;background:rgba(255,0,100,0.6);clip-path:polygon(50% 0%,100% 35%,82% 100%,50% 80%,18% 100%,0% 35%);animation:float 9s linear infinite;z-index:0;}
+    .heart.h2{left:14%;animation-duration:10s;background:rgba(255,192,203,0.6);}
+    .heart.h3{left:48%;animation-duration:12s;background:rgba(255,105,180,0.6);}
+    .heart.h4{left:82%;animation-duration:14s;background:rgba(255,160,180,0.6);}
+    @keyframes float{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+
+    /* Click hearts */
+    .click-heart{
+      position:absolute;
+      width:26px;height:26px;
+      background:hotpink;
+      clip-path:polygon(50% 0%,100% 35%,82% 100%,50% 80%,18% 100%,0% 35%);
+      transform:scale(0);
+      animation:pop 1s forwards;
+      pointer-events:none;
+    }
+    @keyframes pop{
+      0%{transform:scale(0);opacity:1;}
+      50%{transform:scale(1.4);}
+      100%{transform:scale(0);opacity:0;}
+    }
+
+    main{max-width:920px;margin:1.25rem auto;padding:0 1rem;}
+    section{padding:1.6rem 0;opacity:0;transform:translateY(18px);animation:fadeIn .9s forwards;}
+    section:nth-of-type(odd){animation-delay:.25s}
+    h2{
+      font-family:'Dancing Script',cursive;
+      color:var(--accent);
+      font-size:1.6rem;
+      margin:.25rem 0 1rem;
+    }
+    @keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
+
+    .reasons{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+    .reason-card{
+      background:#fff;padding:1rem;border-radius:12px;width:260px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.08);
+      cursor:pointer;
+      transition:transform .25s,box-shadow .25s;
+    }
+    .reason-card:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(0,0,0,0.12)}
+    .reason-details{
+      max-height:0;
+      overflow:hidden;
+      color:#444;
+      margin-top:.5rem;
+      font-size:.95rem;
+      transition:max-height 0.4s ease, opacity 0.4s ease;
+      opacity:0;
+    }
+    .reason-card.open .reason-details{
+      max-height:200px;
+      opacity:1;
+    }
+
+    .chapter{background:rgba(255,255,255,0.9);padding:1rem;border-left:5px solid var(--accent);border-radius:8px;margin:.6rem 0;text-align:left}
+    .quiz-options button{display:block;margin:.4rem auto;padding:.55rem 1rem;border:none;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer}
+    .quiz-message{margin-top:.4rem;font-weight:700}
+    .promises{list-style:none;padding:0}
+    .promises li{background:#fff;border-radius:10px;padding:.75rem;margin:.4rem 0;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+
+    /* Closing Note */
+    .closing-note{
+      text-align:center;
+      font-size:1.2rem;
+      font-style:italic;
+      margin:2rem 0;
+      color:var(--deep);
+      opacity:0;
+      transform:translateY(20px);
+      animation:fadeUp 1.5s forwards;
+      animation-delay:0.6s;
+    }
+    @keyframes fadeUp{
+      to{opacity:1;transform:translateY(0);}
+    }
+  </style>
 </head>
 <body>
-    <video id="background-video" autoplay loop muted>
-        <source src="newsong.mp4" type="video/mp4">
-    </video>
-    
-    <div class="animated-text">Hey, Shundori. I am sorry for cutting the call that day and for keeping myself a mystery. Can we be best friends cutie?</div>
-    <h1>I am really sorry from the bottom of my heart❤️</h1>
+  <div id="intro">
+    <h1>Happy Birthday, My Only fvt Patient 🎂💕</h1>
+    <p>Tap to open your gift and let the music play softly 🎶</p>
+    <button id="openBtn" class="open-btn">Open My Gift</button>
+  </div>
 
-    <button id="press-heart">Press &lt;3</button>
+  <div class="heart"></div><div class="heart h2"></div><div class="heart h3"></div><div class="heart h4"></div>
 
-    <script>
-        document.getElementById("press-heart").addEventListener("click", function() {
-            let video = document.getElementById("background-video");
-            if (!video.paused) {
-                video.pause();
-            } else {
-                video.play();
-            }
+  <header>
+    <div class="title">
+      <h1>Happy Birthday, Cupcake 💕</h1>
+      <p>Today is all about celebrating you and the bond we share.</p>
+    </div>
+    <div>
+      <button id="soundToggle" class="sound-btn">🔊</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Reasons Why I Adore You 💕</h2>
+      <div class="reasons">
+        <div class="reason-card">
+          <h3>Your Laugh</h3>
+          <p class="reason-details">I adore your laugh. I'll never forget how you laughed when I crack cringe jokes and talk to you with the sassy voice.</p>
+        </div>
+        <div class="reason-card">
+          <h3>Your Kindness</h3>
+          <p class="reason-details">You have the warmest heart, always thinking of others before yourself. That inspires me every day.</p>
+        </div>
+        <div class="reason-card">
+          <h3>Your Courage</h3>
+          <p class="reason-details">No matter the challenge, you face it with such strength. I admire you more than words can say.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Our Storybook 📖</h2>
+      <div class="chapter">
+        <h3>The Day We First Met</h3>
+        <p>I still remember the day AUG 16 — we started from "Hey" and now we talk till anyone falls asleep. I apologized on the very first day xD.</p>
+      </div>
+      <div class="chapter">
+        <h3>The Adventure of the Surprise Trip</h3>
+        <p>That trip was pure magic, filled with laugh, cry, angry — every single second was ours to remember.</p>
+      </div>
+      <div class="chapter">
+        <h3>The Time We Conquered a Challenge</h3>
+        <p>We fought the exam, the situationship and so on. That’s our superpower.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Her Favorite Things Quiz 🎯</h2>
+      <p>What’s her favorite thing to do?</p>
+      <div class="quiz-options">
+        <button onclick="checkAnswer(this,false)">Cry</button>
+        <button onclick="checkAnswer(this,false)">Slayyy</button>
+        <button onclick="checkAnswer(this,true)">Jhoghra and block me</button>
+      </div>
+      <div class="quiz-message"></div>
+    </section>
+
+    <section>
+      <h2>My Promise Wall 🌹</h2>
+      <ul class="promises">
+        <li>I promise to always make you laugh, even on tough days.</li>
+        <li>I promise to listen with my heart, not just my ears.</li>
+        <li>I promise to create adventures with you, big or small.</li>
+        <li>I promise to love you more every single day.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Our Playlist 🎶</h2>
+      <p>Every song reminds me of us 💕</p>
+      <audio id="bgMusic" preload="auto" loop>
+        <source src="POV_%20you%20are%20falling%20in%20love%20-%20Love%20%26%20Chill%20Vibes%20%5BXHjxj78AYc0%5D%20%281%29.mp3" type="audio/mp3">
+      </audio>
+    </section>
+
+    <!-- Closing Note -->
+    <section class="closing-note">
+      No matter where life takes us, my love for you will always remain endless. ❤️  
+    </section>
+  </main>
+
+  <script>
+    const intro=document.getElementById('intro');
+    const openBtn=document.getElementById('openBtn');
+    const bgMusic=document.getElementById('bgMusic');
+    const soundToggle=document.getElementById('soundToggle');
+
+    bgMusic.volume=0.2;
+
+    function startMusic(){
+      bgMusic.play().catch(err=>console.log('Autoplay blocked:',err));
+      intro.classList.add('hidden');
+    }
+    openBtn.onclick=startMusic;
+    intro.onclick=e=>{if(e.target===intro)startMusic();};
+
+    soundToggle.onclick=()=>{
+      if(bgMusic.paused){bgMusic.play();soundToggle.textContent='🔊';}
+      else{bgMusic.pause();soundToggle.textContent='🔈';}
+    };
+
+    // Reason cards toggle (only one open at a time)
+    document.querySelectorAll('.reason-card').forEach(card=>{
+      card.addEventListener('click',()=>{
+        document.querySelectorAll('.reason-card').forEach(c=>{
+          if(c!==card) c.classList.remove('open');
         });
+        card.classList.toggle('open');
+      });
+    });
 
-        function createSorryNotes() {
-            const messages = ["I'm Sorry", "Hey Cutie Supppp", "Oiiiiii", "Noakhali Bifagh chai xD", "Kamon acho?", "Kamon galo din?", "Heartfelt Apology"];
-            for (let i = 0; i < 10; i++) {
-                let note = document.createElement("div");
-                note.classList.add("sorry-note");
-                note.innerText = messages[Math.floor(Math.random() * messages.length)];
-                document.body.appendChild(note);
-                
-                note.style.left = Math.random() * (window.innerWidth - 100) + "px";
-                note.style.top = Math.random() * (window.innerHeight - 100) + "px";
-            }
-        }
-        createSorryNotes();
-    </script>
+    function checkAnswer(btn,correct){
+      const m=btn.parentElement.nextElementSibling;
+      if(correct){m.textContent="✔️ Correct! You know her so well!";m.style.color="#28a745";}
+      else{m.textContent="❌ Oops! Try again with love!";m.style.color="#d6336c";}
+    }
+
+    // Click hearts
+    document.addEventListener('click',e=>{
+      if(e.target.closest('#intro')||e.target.closest('button'))return;
+      const h=document.createElement('div');
+      h.className='click-heart';
+      h.style.left=e.pageX-13+'px';
+      h.style.top=e.pageY-13+'px';
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),1000);
+    });
+  </script>
 </body>
 </html>
+
+
 
 
 
